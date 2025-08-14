@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CozyBrew Café — Modern Café Website</title>
+  <meta name="description" content="CozyBrew — A modern, warm cafe website template built with HTML, CSS, Bootstrap & jQuery" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0e0b08;
+      --cream:#f6efe8;
+      --brown:#4b2e2b;
+      --accent:#d99a5b;
+      --muted:#bfaea3;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family:Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; color:var(--brown); background:#fff;}
+    a{color:inherit; text-decoration:none}
+    .container-lg{max-width:1100px}
+
+    /* ===== HERO ===== */
+    header.hero{
+      min-height:92vh;
+      background-image: linear-gradient(180deg, rgba(14,11,8,0.48), rgba(14,11,8,0.48)), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      color:var(--cream);
+      position:relative;
+    }
+    .hero-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,4,3,0.35), rgba(6,4,3,0.55));}
+    .hero-inner{position:relative; z-index:2; padding:64px 16px}
+    .brand { font-weight:700; font-size:1.4rem; letter-spacing:0.6px }
+    .tagline { color:var(--cream); font-size:clamp(1.1rem,2.6vw,1.3rem) }
+    .hero-title{ font-size: clamp(2rem,6vw,3.6rem); line-height:1.02; font-weight:700; margin-top:12px; color:var(--cream)}
+    .hero-cta .btn { border-radius:30px; padding:10px 22px; font-weight:600 }
+    .btn-primary { background: linear-gradient(90deg,var(--accent), #b56f3b); border:0; color:var(--bg) }
+    .btn-outline { background:transparent; border:1px solid rgba(255,255,255,0.2); color:var(--cream) }
+
+    /* glass panel style */
+    .panel { background: rgba(255,255,255,0.02); border-radius:12px; padding:18px; border:1px solid rgba(0,0,0,0.06); color:var(--cream); }
+
+    /* ===== NAV ===== */
+    nav.navbar{ background:transparent; position:fixed; inset:0 auto auto 0; z-index:10; padding-top:14px; padding-bottom:14px; }
+    .navbar .nav-link{ color:rgba(255,255,255,0.9); margin-left:8px; }
+    .navbar .nav-link:hover{ color:var(--accent) }
+
+    /* ===== SECTIONS ===== */
+    section{ padding:72px 0; }
+    .section-title { font-size:1.6rem; font-weight:700; color:var(--brown); margin-bottom:8px }
+    .section-sub { color:var(--muted); margin-bottom:18px }
+
+    /* ===== MENU CARDS ===== */
+    .menu-card{ background:linear-gradient(180deg, #fff, #fbf8f6); border-radius:12px; padding:18px; box-shadow: 0 12px 30px rgba(50,40,30,0.06); border:1px solid rgba(0,0,0,0.04); }
+    .menu-price{ font-weight:700; color:var(--brown) }
+
+    /* ===== GALLERY ===== */
+    .gallery-img{ width:100%; height:190px; object-fit:cover; border-radius:8px; cursor:pointer; transition:transform .35s ease }
+    .gallery-img:hover{ transform:scale(1.03) }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonial{ background:linear-gradient(180deg,#fff,#fff); border-radius:10px; padding:18px; box-shadow:0 8px 26px rgba(34,30,20,0.06); border:1px solid rgba(0,0,0,0.04) }
+    .testimonial p{ margin-bottom:10px; color:#523c38 }
+
+    /* ===== CONTACT ===== */
+    .form-control{ border-radius:8px; border:1px solid rgba(0,0,0,0.08); padding:12px; }
+    .map-frame{ width:100%; height:280px; border:0; border-radius:8px; }
+
+    /* footer */
+    footer{ background:#f9f6f3; padding:28px 0; color:var(--brown) }
+
+    /* responsive tweaks */
+    @media (max-width:768px){
+      .hero-inner{ padding-top:120px }
+      nav.navbar{ position:fixed; width:100%; left:0; top:0 }
+    }
+
+    /* small helper */
+    .muted { color: var(--muted) }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
+    <div class="container container-lg">
+      <a class="navbar-brand brand" href="#home">SNB</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navCollapse">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container container-lg hero-inner">
+      <div class="row align-items-center">
+        <div class="col-lg-6 text-start">
+          <div class="brand">Sachdeva Namkeen bhandar</div>
+          <div class="tagline muted">serving the authentic taste with best quality</div>
+          <h1 class="hero-title">Since 1979, the true address of flavor- Raj Bhog</h1>
+          <p class="lead muted">A neighborhood cafe serving specialty namkeens, homemade  and healthy food. Visit us for a warm cup and a friendly smile.</p>
+          <div class="hero-cta mt-3 d-flex gap-2">
+            <a class="btn btn-primary btn-lg" href="#menu">View Menu</a>
+            <a class="btn btn-outline btn-lg" href="#contact">Reserve Table</a>
+          </div>
+          <div class="mt-4 d-flex gap-3">
+            <div class="panel d-inline-block" style="min-width:120px;">
+              <div style="font-weight:700; font-size:1.25rem">Open</div>
+              <div class="muted" style="font-size:.95rem">Mon — Sun • 10:00 — 21:00</div>
+            </div>
+            <div class="panel d-inline-block" style="min-width:140px;">
+              <div style="font-weight:700; font-size:1.25rem">Location</div>
+              <div class="muted" style="font-size:.95rem">Near kataria Cafe, fazilka</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 text-center mt-4 mt-lg-0">
+          <div class="panel" style="padding:0; overflow:hidden;">
+            <img src="raj bhog.jpg" alt="cozy cafe" style="width:100%; display:block; object-fit:cover; height:420px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container container-lg">
+      <div class="row align-items-center g-4">
+        <div class="col-md-6">
+          <h2 class="section-title">About Sachdeva Namkeen Bhandaar</h2>
+          <p class="section-sub">We are a family-run cafe blending specialty Dahi bhalla with homemade taste. Our quality are ethically sourced and roasted to highlight flavors.</p>
+          <div class="panel">
+            <h5 style="color:#3f2e2c">Our Philosophy</h5>
+            <p class="muted">We believe in slow mornings, warm conversations and a perfect cup. Every item is crafted with care by our team.</p>
+            <ul class="muted mb-0">
+              <li>Single-origin and seasonal coffee</li>
+              <li>Locally-baked pastries daily</li>
+              <li>Cozy interiors & free Wi-Fi</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <img src="dahi bhalla 2.jpg" alt="barista" style="width:100%; border-radius:10px; box-shadow:0 12px 30px rgba(60,40,30,0.08)">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="container container-lg">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Menu</h2>
+        <p class="section-sub">A selection of our favorite dishes and tastes. Prices listed are indicative.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Coffee Column -->
+        <div class="col-md-4">
+          <h5 style="margin-bottom:12px">Bhalla</h5>
+          <div class="d-flex flex-column gap-3">
+            <div class="menu-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div style="font-weight:700">Dahi bhalla</div>
+                  <div class="muted small">Soft, fluffy bhallas drenched in creamy yogurt</div>
+                </div>
+                <div class="menu-price">₹35</div>
+                
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div style="font-weight:700">Bhalla Papdi</div>
+                  <div class="muted small">Crispy papdi and soft bhallas layered with creamy yogurt and tangy chutneys.</div>
+                </div>
+                <div class="menu-price">₹40</div>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div style="font-weight:700">Cold Brew</div>
+                  <div class="muted small">Smooth & chilled</div>
+                </div>
+                <div class="menu-price">₹180</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pastries Column -->
+        <div class="col-md-4">
+          <h5 style="margin-bottom:12px">Raj bhog</h5>
+          <div class="d-flex flex-column gap-3">
+            <div class="menu-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div style="font-weight:700">Cream Raj Bhog</div>
+                  <div class="muted small">where tradition meets timeless taste since 1979</div>
+                </div>
+                <div class="menu-price">₹60</div>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div style="font-weight:700">Raj Bhog with Papdi</div>
+                  <div class="muted small">Crispy papdi with Creamy yogurt and royal taste.</div>
+                </div>
+                <div class="menu-price">₹70</div>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div style="font-weight:700">Blueber</div>
+                  <div class="muted small">Fresh berries</div>
+                </div>
+                <div class="menu-price">₹110</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Snacks Column -->
+        <div class="col-md-4">
+          <h5 style="margin-bottom:12px">Soups (seasonal)</h5>
+          <div class="d-flex flex-column gap-3">
+            <div class="menu-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div style="font-weight:700">Channa Sooup</div>
+                  <div class="muted small">Warm, spiced chickpea soup full of hearty flaavor</div>
+                </div>
+                <div class="menu-price">₹40</div>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div style="font-weight:700">Tomato Soup</div>
+                  <div class="muted small">Rich, tangy tomato soup with a comforting touch.</div>
+                </div>
+                <div class="menu-price">₹40</div>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div style="font-weight:700">Mix veg soup</div>
+                  <div class="muted small">Wholesome mix veg soup bursting with fresh flavors.</div>
+                </div>
+                <div class="menu-price">₹240</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container container-lg">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-sub">Snapshots from our cafe — click to enlarge.</p>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-sm-6 col-md-4">
+          <img src="dahi bhalla.jpg" class="gallery-img" alt="gallery-1" data-full="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1600&auto=format&fit=crop">
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <img src="dahi bhalla 2.jpg" class="gallery-img" alt="gallery-2" data-full="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1600&auto=format&fit=crop">
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <img src="soup.jpg" class="gallery-img" alt="gallery-3" data-full="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container container-lg">
+      <div class="text-center mb-4">
+        <h2 class="section-title">What customers say</h2>
+        <p class="section-sub">Warm reviews from our lovely customers.</p>
+      </div>
+
+      <div class="position-relative">
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-8">
+            <div id="testimonialSlider" class="testimonial p-4">
+              <!-- slides injected by JS -->
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <button id="prevTest" class="btn btn-outline-secondary btn-sm">Prev</button>
+              <div class="muted small">We value every cup and every smile.</div>
+              <button id="nextTest" class="btn btn-outline-secondary btn-sm">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container container-lg">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6">
+          <h2 class="section-title">Contact & Reservations</h2>
+          <p class="section-sub">Drop a message or visit us — we would love to host you.</p>
+
+          <div class="panel">
+            <p style="margin-bottom:6px"><strong>Address</strong></p>
+            <div class="muted mb-3">Near Kataria Cafe, Fazilka — Open daily 8:00–20:00</div>
+
+            <p style="margin-bottom:6px"><strong>Phone</strong></p>
+            <div class="muted mb-3">+91 9914983127</div>
+
+            <p style="margin-bottom:6px"><strong>Email</strong></p>
+            <div class="muted">hello@cozybrew.example</div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="panel">
+            <form id="reserveForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Your name" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="tel" class="form-control" placeholder="Phone" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="datetime-local" class="form-control" placeholder="Date & time" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="number" class="form-control" placeholder="Guests" min="1" value="2" required>
+                </div>
+                <div class="col-12">
+                  <textarea class="form-control" rows="3" placeholder="Special requests (optional)"></textarea>
+                </div>
+                <div class="col-12 text-end">
+                  <button class="btn btn-primary">Request Reservation</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-12 mt-4">
+          <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!2m12!..." loading="lazy" title="map placeholder"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container container-lg d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div style="font-weight:700">CozyBrew</div>
+      <div class="muted small">© <span id="yr"></span> CozyBrew Café • All rights reserved</div>
+      <div class="d-none d-md-block">
+        <a class="muted me-3" href="#">Privacy</a>
+        <a class="muted" href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Image Modal (lightbox) -->
+  <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background:transparent; border:none;">
+        <div class="modal-body p-0">
+          <img src="" alt="enlarged" id="imgModalSrc" style="width:100%; height:auto; border-radius:8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery + Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // dynamic year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Smooth scroll for nav links
+    $('a.nav-link[href^="#"]').on('click', function(e){
+      e.preventDefault();
+      const target = $(this).attr('href');
+      if(target.length > 1 && $(target).length){
+        $('html,body').animate({ scrollTop: $(target).offset().top - 72 }, 600);
+        $('.navbar-collapse').collapse('hide');
+      }
+    });
+
+    // Gallery lightbox
+    $('.gallery-img').on('click', function(){
+      const src = $(this).data('full') || $(this).attr('src');
+      $('#imgModalSrc').attr('src', src);
+      var modal = new bootstrap.Modal(document.getElementById('imgModal'));
+      modal.show();
+    });
+
+    // Testimonials slider (simple)
+    const testimonials = [
+      { name: 'Ananya R.', text: 'Best coffee in town — friendly staff and cozy vibe. The cappuccino is perfect!' },
+      { name: 'Rohit S.', text: 'Their banana bread is a must-try. Great place to work and relax.' },
+      { name: 'Maya K.', text: 'Lovely interiors and warm service. Highly recommend for weekend brunch.' }
+    ];
+    let tIndex = 0;
+    function renderTestimonial(i){
+      const t = testimonials[i % testimonials.length];
+      $('#testimonialSlider').fadeOut(200, function(){
+        $(this).html('<p>"' + t.text + '"</p><div style="font-weight:700">' + t.name + '</div>');
+        $(this).fadeIn(300);
+      });
+    }
+    renderTestimonial(tIndex);
+    $('#nextTest').on('click', function(){ tIndex = (tIndex + 1) % testimonials.length; renderTestimonial(tIndex); });
+    $('#prevTest').on('click', function(){ tIndex = (tIndex - 1 + testimonials.length) % testimonials.length; renderTestimonial(tIndex); });
+    // auto play
+    setInterval(function(){ $('#nextTest').click(); }, 6000);
+
+    // Reservation / Contact demo handler
+    $('#reserveForm').on('submit', function(e){
+      e.preventDefault();
+      // Demo — replace with real backend integration
+      const name = $(this).find('input[type="text"]').val() || 'Guest';
+      alert('Thanks, ' + name + '! Your reservation request is received (demo). We will contact you shortly.');
+      this.reset();
+    });
+
+    // Smooth reveal (simple)
+    $(window).on('scroll load', function(){
+      $('.panel, .menu-card, .gallery-img, .testimonial').each(function(){
+        const top = $(this).offset().top;
+        const scroll = $(window).scrollTop() + $(window).height();
+        if(scroll > top + 60) $(this).css({opacity:1, transform:'none'});
+      });
+    });
+
+    // initial css for reveal elements (fade in)
+    $('.panel, .menu-card, .gallery-img, .testimonial').css({opacity:0, transform:'translateY(12px)', transition:'all .6s cubic-bezier(.2,.9,.2,1)'});
+    $(window).trigger('load');
+
+    // Respect reduced-motion
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      // disable animations
+      $('.gallery-img, .panel, .menu-card, .testimonial').css({transition:'none'});
+    }
+  </script>
+</body>
+</html>
